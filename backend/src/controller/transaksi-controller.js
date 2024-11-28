@@ -13,7 +13,7 @@ const transaksiPembayaran = async (req,res,next) => {
       }
 
 
-      const result = await transaksiService.transaksiPembayaran(userId, bayar, metode_pembayaran, deskripsi)
+      const result = await transaksiService.transaksiPembayaran(userId, bayar, metode_pembayaran, deskripsi, new Date())
       
       res.status(200).json({
         data : result,

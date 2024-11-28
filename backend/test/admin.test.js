@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import { web } from "../src/app/web";
 
-import { createTestDaftar, createTestDaftarAdmin, createTestTransaksiAdmin, createTestUserAdmin, getTestDaftar, getTestDaftarAdmin, getTestUser, getTestUserAdmin, removeAllTextDaftar, removeAllTextDaftarAdmin, removeAllTextTransaksiAdmin, removeTestUserAdmin } from "./test-utils";
+import { createTestDaftar, createTestDaftarAdmin, createTestTransaksiAdmin, createTestUserAdmin, getTestDaftar, getTestDaftarAdmin, getTestTransaksiAdmin, getTestUser, getTestUserAdmin, removeAllTextDaftar, removeAllTextDaftarAdmin, removeAllTextTransaksiAdmin, removeTestUserAdmin } from "./test-utils";
 import { remove } from "winston";
 import { prismaClient } from "../src/app/database";
 
@@ -147,6 +147,9 @@ import { prismaClient } from "../src/app/database";
 
 
 
+// // TRANSAKSI
+
+
 describe('GET /users/admin/daftar-transaksi', () => {
     beforeEach(async () => {
         await createTestUserAdmin()
@@ -170,4 +173,45 @@ describe('GET /users/admin/daftar-transaksi', () => {
 
     })
 })
+
+
+
+
+// describe('PUT /users/admin/daftar-transaksi/:id', () => {
+//     beforeEach(async () => {
+//         await createTestUserAdmin()
+//         await createTestDaftarAdmin()
+//         await createTestTransaksiAdmin()
+//     })
+
+
+
+//     afterEach(async () => {
+//         await removeAllTextDaftarAdmin();
+//         await removeAllTextTransaksiAdmin();
+//         await removeTestUserAdmin();
+//     })
+
+
+//     it('should update', async () => {
+//         const testTransaksi =  await getTestTransaksiAdmin()
+//         parseInt(testTransaksi.id)
+//         const result = await supertest(web).put('/users/admin/daftar-transaksi/' + testTransaksi.id).set('Authorization', 'test').send({
+//             jumlah_pembayaran : 1000,
+//             metode_pembayaran : "test baru",
+//             deskripsi : "test",
+//             tanggal_transaksi : new Date()
+//         })
+
+
+
+//         expect(result.status).toBe(200)
+//         expect(result.body.data.id).toBe(testTransaksi.id)
+//         expect(result.body.data.jumlah_pembayaran).toBe("1000")
+//         expect(result.body.data.metode_pembayaran).toBe("test baru")
+//         expect(result.body.data.deskripsi).toBe("test")
+//     })
+// })
+
+
 

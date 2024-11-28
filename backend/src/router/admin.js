@@ -25,6 +25,7 @@ admin.put("/users/admin/daftar/keterangan-lulus/:id", adminController.userketera
 
 
 admin.get("/users/admin/daftar-transaksi", adminController.getAllTransaksi)
+admin.put("/users/admin/daftar-transaksi/:id", adminController.updateTransaksi)
 
 
 

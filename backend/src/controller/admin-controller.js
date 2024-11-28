@@ -21,7 +21,7 @@ const updateDaftar = async (req,res,next) => {
         const daftarId = req.params.id
         const request = req.body
         request.id = daftarId
-        const result = await adminService.updateDaftar(req.user, req.body)
+        const result = await adminService.updateDaftar(user, req.body)
         res.status(200).json({
             data : result
         })
@@ -86,6 +86,25 @@ const getAllTransaksi = async (req,res,next) => {
 }
 
 
+const updateTransaksi = async (req,res,next) => {
+    try {
+        const user = req.user
+        const id = req.params.id
+        const request = req.body
+        console.log(user)
+        request.id = id 
+        const result = await adminService.updateTransaksi(req.user, req.body)
+        res.status(200).json({
+            data : result
+        })
+
+
+    }catch (error) {
+        next(error)
+    }
+}
+
+
 
 
 
@@ -96,6 +115,7 @@ export default {
     deleteDaftar,
     userketeranganLulus,
     getAllUser,
-    getAllTransaksi
+    getAllTransaksi,
+    updateTransaksi
 
 }

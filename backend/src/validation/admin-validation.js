@@ -39,6 +39,13 @@ const getAllTransaksi = Joi.object({
 
 })
 
+const updateTransaksiValidation = Joi.object({
+    id: Joi.number().positive().required(),
+    jumlah_pembayaran: Joi.number().required(),
+    metode_pembayaran: Joi.string().required(),
+    tanggal_transaksi: Joi.date().required(),
+    deskripsi: Joi.string().required(),
+})
 
 export {
     getValidationAdmin,
@@ -46,5 +53,6 @@ export {
     deleteValidationAdmin,
     UserketeranganLulusValidation,
     getAllDaftarUser,
-    getAllTransaksi
+    getAllTransaksi,
+    updateTransaksiValidation
 }

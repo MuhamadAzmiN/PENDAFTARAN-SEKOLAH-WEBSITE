@@ -1,6 +1,6 @@
 import { prismaClient } from "../app/database.js"
 import { validate } from "../validation/validation.js";
-import { deleteValidationAdmin, updateValidationAdmin, UserketeranganLulusValidation } from "../validation/admin-validation.js";
+import { deleteValidationAdmin, updateTransaksiValidation, updateValidationAdmin, UserketeranganLulusValidation } from "../validation/admin-validation.js";
 import { ResponseError } from "../error/response-error.js";
 
 
@@ -161,20 +161,21 @@ const getAllUser = async () => {
 
  const getAllTransaksi = async () => {
     const result = await prismaClient.transaksi.findMany({
-        select : {
-            metode_pembayaran : true,
-            jumlah_pembayaran : true,
-            tanggal_transaksi : true,
-            deskripsi : true,
-            createdAt : true,
-            updatedAt : true,
-            user : {
-                select : {
-                    email : true
-                }
-            }
-        }
-    })
+        select: {
+            id: true,
+            metode_pembayaran: true,
+            jumlah_pembayaran: true,
+            tanggal_transaksi: true,
+            deskripsi: true,
+            updatedAt: true,
+            user: {
+                select: {
+                    email: true,
+                },
+            },
+        },
+    });
+    
 
 
     if(result.length == 0){
@@ -183,6 +184,25 @@ const getAllUser = async () => {
 
 
     return result
+ }
+
+
+ const updateTransaksi = async (user, request) => {
+    const transaksi = validate(updateTransaksiValidation, request)
+    
+
+    const transaksiId = parseInt(transaksi.id)
+
+    return prismaClient.transaksi.update({
+        where : {
+            id : transaksiId
+        },
+        data : {
+            jumlah_pembayaran : transaksi.jumlah_pembayaran,
+            metode_pembayaran : transaksi.metode_pembayaran,
+            deskripsi : transaksi.deskripsi
+        }
+    })
  }
  
 
@@ -195,5 +215,6 @@ export default {
     deleteDaftar,
     getAllUser,
     userketeranganLulus,
-    getAllTransaksi
+    getAllTransaksi,
+    updateTransaksi 
 }

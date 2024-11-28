@@ -200,7 +200,8 @@ export const createTestTransaksiAdmin = async () => {
             jumlah_pembayaran : 100000,
             metode_pembayaran : "test",
             deskripsi : "test",
-            userId : testUserAdmin.id
+            userId : testUserAdmin.id,
+            tanggal_transaksi : new Date()
             
         }  
     })
@@ -208,6 +209,7 @@ export const createTestTransaksiAdmin = async () => {
 
 
 export const removeAllTextTransaksiAdmin = async () => {
+    const testTransaksi = await getTestTransaksiAdmin()
     await prismaClient.transaksi.deleteMany({
         where : {
             deskripsi : "test"
@@ -217,3 +219,13 @@ export const removeAllTextTransaksiAdmin = async () => {
 
 
 
+
+
+export const getTestTransaksiAdmin = async () => {
+    
+    return prismaClient.transaksi.findFirst({
+        where : {
+            metode_pembayaran : "test"
+        }
+    })
+}
