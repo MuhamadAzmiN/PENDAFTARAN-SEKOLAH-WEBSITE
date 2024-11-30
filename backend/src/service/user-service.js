@@ -81,6 +81,8 @@ const login = async (request) => {
 
 
 
+
+
 const getProfile = async (email) => {
     email = validate(getUserValidation, email)
     const user = await prismaClient.user.findUnique({
