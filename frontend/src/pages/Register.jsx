@@ -15,25 +15,27 @@ const RegisterPage = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      console.log('Sending data:', { username, email, password, name });
       const response = await axios.post('http://localhost:4000/users/register', {
         username,
         email,
         password,
-        name
+        name,
       });
-
+      console.log('Response:', response.data);
+  
       setSuccess('Registration successful');
       setError('');
-      
-      // Optional: redirect to login after successful registration
       setTimeout(() => {
-        window.location.href = '/';
+        navigate('/');
       }, 2000);
     } catch (err) {
-      setError(err.response?.data?.errors || 'Registration failed');
+      console.error('Error:', err.response || err.message);
+      setError(err.response?.data?.errors || err.message || 'Registration failed');
       setSuccess('');
     }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">

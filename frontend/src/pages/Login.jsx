@@ -32,6 +32,9 @@ const LoginPage = () => {
   };
 
 
+
+
+
   
 
   return (
@@ -79,7 +82,7 @@ const LoginPage = () => {
         </form>
         <div className="mt-4 text-center">
           <p className="text-gray-600">
-            Don't have an account? 
+           
             <a onClick={() => navigate('/register')} className="text-blue-500 ml-1 hover:underline">
               Register
             </a>
