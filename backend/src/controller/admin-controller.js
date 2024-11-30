@@ -75,7 +75,7 @@ const getAllUser = async (req,res,next) => {
 
 const getAllTransaksi = async (req,res,next) => {
     try {
-        const result = await adminService.getAllTransaksi()
+        const result = await adminServismce.getAllTransaksi()
         res.status(200).send({
             data : result,
         })
