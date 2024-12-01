@@ -10,17 +10,31 @@ const LoginPage = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const handleLogin = async (e) => {
+  // UnComment if your backend finish 
+
+  // const handleLogin = async (e) => {
+  //   e.preventDefault()
+  //   try {
+  //     const response = await axios.post('http://localhost:4000/users/login', {
+  //       email,
+  //       password
+  //     })
+  //     localStorage.setItem('token', response.data.data.token)
+  //     navigate('/dashboard')
+  //   } catch (err) {
+  //     setError(err.response?.data?.errors || 'Login failed')
+  //   }
+  // }
+
+  // Data Dummy for Login 
+  const handleLogin = (e) => {
     e.preventDefault()
-    try {
-      const response = await axios.post('http://localhost:4000/users/login', {
-        email,
-        password
-      })
-      localStorage.setItem('token', response.data.data.token)
-      navigate('/dashboard')
-    } catch (err) {
-      setError(err.response?.data?.errors || 'Login failed')
+    // Dummy login credentials
+    if (email === 'admin@gmail.com' && password === '123456') {
+      localStorage.setItem('token', 'dummyToken123') // Simulasi token
+      navigate('/home')
+    } else {
+      setError('Invalid email or password')
     }
   }
 
